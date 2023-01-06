@@ -22,11 +22,10 @@ jobs:
             rust_target: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.platform }}
     steps:
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-          with:
-            version: 6.0.2
-            
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.0.2
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
