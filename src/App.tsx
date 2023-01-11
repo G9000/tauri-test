@@ -1,7 +1,10 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/tauri";
+import { getVersion } from "@tauri-apps/api/app";
 import "./App.css";
+
+const appVersion = await getVersion();
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -29,6 +32,7 @@ function App() {
       </div>
 
       <p>Click on the Tauri, Vite, and React logos to learn more.</p>
+      <p>{appVersion ? appVersion : "0.0.0"}</p>
 
       <div className="row">
         <div>
