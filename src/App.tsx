@@ -6,6 +6,8 @@ import "./App.css";
 
 const appVersion = await getVersion();
 
+console.log("appVersion", appVersion);
+
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
