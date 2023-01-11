@@ -4,11 +4,10 @@ import { invoke } from "@tauri-apps/api/tauri";
 import { getVersion } from "@tauri-apps/api/app";
 import "./App.css";
 
-const appVersion = await getVersion();
-
-function App() {
+async function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
+  const appVersion = await getVersion();
 
   async function greet() {
     // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
