@@ -6,7 +6,7 @@ import "./App.css";
 
 const appVersion = await getVersion();
 
-async function App() {
+function App() {
   const [greetMsg, setGreetMsg] = useState("");
   const [name, setName] = useState("");
   async function greet() {
