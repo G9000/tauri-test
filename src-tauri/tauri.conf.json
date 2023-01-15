@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "tauri-vite-updater",
-    "version": "2.0.0"
+    "version": "3.0.0"
   },
   "tauri": {
     "allowlist": {
@@ -54,7 +54,7 @@
       "endpoints": [
         "https://julio-api-ebon.vercel.app/api/tauri-app/{{target}}/{{current_version}}"
       ],
-      "dialog": true,
+      "dialog": false,
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDE4ODNGMjFERDg4RTFCNEQKUldSTkc0N1lIZktER0VLNkx4NW5sekJ2MmExWDQwQWxiY1VaZmdEQUdHR0FycUl4SmI2R21POWQK"
     },
     "windows": [

@@ -1,53 +1,47 @@
 import { useState } from "react";
+import { checkUpdate, installUpdate } from "@tauri-apps/api/updater";
 import reactLogo from "./assets/react.svg";
 import { invoke } from "@tauri-apps/api/tauri";
 import { getVersion } from "@tauri-apps/api/app";
+import { message } from "@tauri-apps/api/dialog";
+import { relaunch } from "@tauri-apps/api/process";
 import "./App.css";
 
 const appVersion = await getVersion();
 
-console.log("appVersion", appVersion);
+// try {
+//   const { shouldUpdate, manifest } = await checkUpdate();
+//   if (shouldUpdate) {
+//     // display dialog
+//     await installUpdate();
+//     // install complete, restart the app
+//     await relaunch();
+//   }
+// } catch (error) {
+//   console.log(error);
+// }
 
 function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-    setGreetMsg(await invoke("greet", { name }));
+  async function onUpdate() {
+    const { shouldUpdate, manifest } = await checkUpdate();
+    if (shouldUpdate) {
+      await installUpdate();
+      await relaunch();
+    }
   }
 
   return (
     <div className="container">
       <h1>Welcome to Tauri!</h1>
-
-      <div className="row">
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
       <p>{appVersion ? appVersion : "0.0.0"}</p>
 
       <div className="row">
         <div>
-          <input
-            id="greet-input"
-            onChange={(e) => setName(e.currentTarget.value)}
-            placeholder="Enter a name..."
-          />
-          <button type="button" onClick={() => greet()}>
-            Greet
+          <button type="button" onClick={() => onUpdate()}>
+            Update
           </button>
         </div>
       </div>
-      <p>{greetMsg}</p>
     </div>
   );
 }
